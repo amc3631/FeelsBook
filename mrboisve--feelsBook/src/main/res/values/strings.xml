@@ -8,4 +8,7 @@
     <string name="Sadness_button">Sadness</string>
     <string name="mainHeader">What are you feeling?</string>
     <string name="historyButtonText">View/Edit History</string>
+    <string name="comment_prompt">Enter a comment (optional)</string>
+    <string name="commentHint">Enter a comment here (optional)</string>
+    <string name="title_activity_edit_comment">editCommentActivity</string>
 </resources>

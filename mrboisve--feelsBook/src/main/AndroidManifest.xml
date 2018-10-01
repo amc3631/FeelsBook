@@ -16,6 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".listEmotionsActivity" />
+        <activity android:name=".editEmotionActivity" />
+        <activity
+            android:name=".editCommentActivity"
+            android:label="@string/title_activity_edit_comment" />
+        <activity android:name=".editDateActivity" />
+        <activity android:name=".editEntryActivity"></activity>
     </application>
 
 </manifest>

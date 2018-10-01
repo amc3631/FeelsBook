@@ -1,5 +1,7 @@
 package com.example.mikey.assignment1;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         Button fearButton = findViewById(R.id.fearButton);
         Button sadnessButton = findViewById(R.id.sadnessButton);
         Button angerButton = findViewById(R.id.angerButton);
+        Button historyButton = findViewById(R.id.historyButton);
 
         // create instances of emotionTotalDisplay for each emotion
         joyDisplay = new emotionTotalDisplay((TextView)findViewById(R.id.joyTotal),"joyKey", this);
@@ -88,6 +91,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 loveDisplay.incrementTotal();
+            }
+        });
+
+        // history button will take user to list of emotions in a different activity
+        historyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, listEmotionsActivity.class);
+                startActivity(intent);
             }
         });
     }

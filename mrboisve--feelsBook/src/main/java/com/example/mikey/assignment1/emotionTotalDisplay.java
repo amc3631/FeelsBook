@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import static android.app.PendingIntent.getActivity;
 
+// each emotion display has an emotion total and a key needed to retrieve the emotion total from shared preferences
+// each display has a textview on main activity which shows current emotion total
+// emotion totals are kept persistent by storing them in shared preferences
 public class emotionTotalDisplay {
 
     private Context mainActivity;
@@ -26,11 +29,14 @@ public class emotionTotalDisplay {
         myPrefs = mainActivity.getSharedPreferences("prefs", Context.MODE_PRIVATE);
     }
 
+    // set view to show current emotion total
     public void updateDisplay(){
         emotionTotal = myPrefs.getInt(emotionKey,0);
         display.setText("Total: " + emotionTotal);
     }
 
+    // increase total emotion count by 1
+    // should be used after adding emotion to emotion list
     public void incrementTotal(){
         emotionTotal ++;
         SharedPreferences.Editor editor = myPrefs.edit();
@@ -39,6 +45,8 @@ public class emotionTotalDisplay {
         this.updateDisplay();
     }
 
+    // decrease total emotion count by 1
+    // should be used after deleting emotion from emotion list
     public void decrementTotal(){
         emotionTotal --;
         SharedPreferences.Editor editor = myPrefs.edit();

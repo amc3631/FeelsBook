@@ -4,7 +4,7 @@ import java.util.Date;
 
 // each emotion has a type comment and date
 // initializing with comment is optional
-// all elements need to be editable
+// all elements are editable
 public class emotion {
 
     private String emotionType;
