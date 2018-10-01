@@ -7,6 +7,8 @@ import android.preference.PreferenceManager;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -55,18 +57,5 @@ public class emotionList implements manageEmotions {
     }
 
     // code from https://freakycoder.com/android-notes-40-how-to-save-and-get-arraylist-into-sharedpreference-7d1f044bc79a
-    public void saveArrayList(){
-        SharedPreferences.Editor editor = myPrefs.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(emotionList);
-        editor.putString(key, json);
-        editor.apply();
-    }
 
-    public ArrayList<emotion> retrieveArrayList(){
-        Gson gson = new Gson();
-        String json = myPrefs.getString(key, null);
-        Type type = new TypeToken<ArrayList<emotion>>() {}.getType();
-        return gson.fromJson(json, type);
-    }
 }

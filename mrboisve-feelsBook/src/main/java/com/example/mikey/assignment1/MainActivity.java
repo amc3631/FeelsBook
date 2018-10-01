@@ -9,10 +9,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+
+import static com.example.mikey.assignment1.emotionListController.getEmotionList;
 
 // TODO: cite student picker and lonelytwitter
+// serializable from here
+// https://stackoverflow.com/questions/12092612/pass-list-of-objects-from-one-activity-to-other-activity-in-android
 
 
 public class MainActivity extends AppCompatActivity {
@@ -39,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
         Button angerButton = findViewById(R.id.angerButton);
         Button historyButton = findViewById(R.id.historyButton);
 
+        // comment box id
+        final TextView comment = findViewById(R.id.commentBox);
+
         // create instances of emotionTotalDisplay for each emotion
         joyDisplay = new emotionTotalDisplay((TextView)findViewById(R.id.joyTotal),"joyKey", this);
         fearDisplay = new emotionTotalDisplay((TextView)findViewById(R.id.fearTotal),"fearKey", this);
@@ -47,15 +56,21 @@ public class MainActivity extends AppCompatActivity {
         surpriseDisplay = new emotionTotalDisplay((TextView)findViewById(R.id.surpriseTotal),"surpriseKey", this);
         angerDisplay = new emotionTotalDisplay((TextView)findViewById(R.id.angerTotal),"angerKey", this);
 
+        // create emotion list controller and get emotion list
+        final emotionList eList = getEmotionList(this);
+
         // list of displays
-        ArrayList<emotionTotalDisplay> displays = new ArrayList<>();
+        List<emotionTotalDisplay> displays = new ArrayList<>();
         Collections.addAll(displays, joyDisplay, fearDisplay, sadnessDisplay, loveDisplay, surpriseDisplay, angerDisplay);
 
-        // set listeners for each button such that each button will increment the corresponding total
+        // set listeners for each button
+        // each button will increment total, create a new emotion, and add new emotion to emotion list
         joyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 joyDisplay.incrementTotal();
+                emotion e = new emotion("Joy", comment.getText().toString());
+                eList.addEmotion(e);
             }
         });
 
@@ -63,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fearDisplay.incrementTotal();
+                emotion e = new emotion("Fear", comment.getText().toString());
+                eList.addEmotion(e);
             }
         });
 
@@ -70,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 angerDisplay.incrementTotal();
+                emotion e = new emotion("Anger", comment.getText().toString());
+                eList.addEmotion(e);
+
             }
         });
 
@@ -77,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 sadnessDisplay.incrementTotal();
+                emotion e = new emotion("Sadness", comment.getText().toString());
+                eList.addEmotion(e);
             }
         });
 
@@ -84,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 surpriseDisplay.incrementTotal();
+                emotion e = new emotion("Surprise", comment.getText().toString());
+                eList.addEmotion(e);
             }
         });
 
@@ -91,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 loveDisplay.incrementTotal();
+                emotion e = new emotion("Love", comment.getText().toString());
+                eList.addEmotion(e);
+
             }
         });
 
