@@ -5,7 +5,11 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import java.lang.reflect.Type;
+import java.text.Format;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -18,44 +22,49 @@ import com.google.gson.reflect.TypeToken;
 public class emotionList implements manageEmotions {
 
     private ArrayList<emotion> emotionList;
-    private SharedPreferences myPrefs;
-    private Context activity;
-    private String key = "list key";
 
-    emotionList(Context acitvity){
-        //emotionList = myPrefs.getClass();
-        this.activity = acitvity;
-        myPrefs = activity.getSharedPreferences("prefs", Context.MODE_PRIVATE);
+    emotionList(){
         emotionList = new ArrayList<>();
     }
 
     public void addEmotion(emotion e){
         emotionList.add(e);
-        updateDisplay();
+        sortList();
     }
 
-    public void editEmotion(emotion e, Date date, String comment, String emotionType){
-        e.setComment(comment);
+    public void editEmotion(emotion e, String emotionData) throws ParseException {
+        String[] splitData = emotionData.split("\\s");
+        e.setEmotionType(splitData[0]);
+        Date date = new Date();
+        date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(splitData[1]);
         e.setDate(date);
-        e.setEmotionType(emotionType);
-        updateDisplay();
+        // reconstruct comment in the event there was spaces in it
+        int wordsInComment = splitData.length - 2;
+        String comment = "";
+        if (wordsInComment>0) {
+            for (int i=0;i<wordsInComment;i++){
+                comment = comment + " " + splitData[i+2];
+            }
+        }
+        e.setComment(comment);
+        sortList();
     }
 
     public void deleteEmotion(emotion e){
         emotionList.remove(e);
-        updateDisplay();
+        sortList();
     }
 
-    // display emotions in list sorted by date
-    private void updateDisplay(){
-
-
+    // sort emotions by date using custom comparator class
+    // they are sorted from latest to earliest so that the newest emotions added
+    // will appear on top of the ListView
+    private void sortList(){
+        Collections.sort(emotionList, new emotionComparator());
     }
 
     public ArrayList<emotion> getEmotionList(){
         return this.emotionList;
     }
 
-    // code from https://freakycoder.com/android-notes-40-how-to-save-and-get-arraylist-into-sharedpreference-7d1f044bc79a
 
 }

@@ -62,6 +62,6 @@ public class emotion {
 
     @Override
     public String toString(){
-        return emotionType + "      " + format.format(date) + "\n" + comment;
+        return emotionType + " " + format.format(date) + "\n" + comment;
     }
 }

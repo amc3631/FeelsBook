@@ -11,39 +11,41 @@
         android:id="@+id/newEmotionType"
         android:layout_width="246dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="532dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/newType"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/currentEmotion"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/currentEmotion"
         android:layout_width="246dp"
-        android:layout_height="34dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="84dp"
         android:text="@string/textview"
+        app:layout_constraintBottom_toTopOf="@+id/loveButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/fearButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="46dp"
-        android:layout_marginStart="46dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="8dp"
         android:text="@string/fear"
         android:textColor="@android:color/holo_purple"
+        app:layout_constraintBottom_toTopOf="@+id/dateChangeHeader"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/joyButton" />
 
@@ -51,23 +53,25 @@
         android:id="@+id/angerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="46dp"
-        android:layout_marginRight="46dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:layout_marginTop="8dp"
         android:text="@string/anger"
         android:textColor="@android:color/holo_red_dark"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/currentEmotion" />
 
     <Button
         android:id="@+id/sadnessButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="46dp"
-        android:layout_marginRight="46dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:layout_marginTop="8dp"
         android:text="@string/sadness"
         android:textColor="@android:color/holo_blue_dark"
+        app:layout_constraintBottom_toTopOf="@+id/dateChangeHeader"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/angerButton" />
 
@@ -75,26 +79,29 @@
         android:id="@+id/joyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="46dp"
-        android:layout_marginStart="46dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="8dp"
         android:text="@string/joy"
         android:textColor="@android:color/holo_green_dark"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/currentEmotion" />
 
     <Button
         android:id="@+id/surpriseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="@string/surpsrise"
         android:textColor="@android:color/holo_orange_dark"
+        app:layout_constraintBottom_toTopOf="@+id/dateChangeHeader"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loveButton" />
 
@@ -106,204 +113,255 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="128dp"
         android:text="@string/love"
         android:textColor="@android:color/holo_red_light"
         app:layout_constraintEnd_toStartOf="@+id/angerButton"
         app:layout_constraintStart_toEndOf="@+id/joyButton"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/dateChangeHeader"
-        android:layout_width="288dp"
-        android:layout_height="26dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="216dp"
-        android:text="@string/newDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/yearText"
         android:layout_width="109dp"
         android:layout_height="42dp"
-        android:layout_marginBottom="256dp"
+        android:layout_marginBottom="212dp"
         android:layout_marginLeft="44dp"
         android:layout_marginStart="44dp"
+        android:layout_marginTop="4dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/name"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yearHeader" />
 
     <EditText
         android:id="@+id/monthText"
         android:layout_width="54dp"
         android:layout_height="42dp"
-        android:layout_marginBottom="256dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginBottom="208dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/name"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/dayText"
+        app:layout_constraintHorizontal_bias="0.074"
         app:layout_constraintStart_toEndOf="@+id/yearText" />
 
     <EditText
         android:id="@+id/dayText"
         android:layout_width="55dp"
         android:layout_height="42dp"
-        android:layout_marginBottom="256dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginBottom="208dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="52dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/name"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/monthText" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/yearHeader"
         android:layout_width="103dp"
         android:layout_height="22dp"
+        android:layout_marginBottom="260dp"
         android:layout_marginLeft="44dp"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="244dp"
+        android:layout_marginTop="8dp"
         android:text="@string/year"
         android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/dateChangeHeader" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/monthHeader"
         android:layout_width="63dp"
         android:layout_height="25dp"
-        android:layout_marginEnd="140dp"
-        android:layout_marginRight="140dp"
-        android:layout_marginTop="245dp"
+        android:layout_marginBottom="256dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="8dp"
         android:text="@string/month"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/dayHeader"
+        app:layout_constraintTop_toBottomOf="@+id/dateChangeHeader" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/dayHeader"
         android:layout_width="53dp"
         android:layout_height="26dp"
-        android:layout_marginBottom="296dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginRight="48dp"
+        android:layout_marginBottom="256dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
+        android:layout_marginTop="8dp"
         android:text="@string/day"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateChangeHeader" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/hoursBox"
         android:layout_width="62dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="188dp"
+        android:layout_marginBottom="128dp"
         android:layout_marginLeft="44dp"
         android:layout_marginStart="44dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/name"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hoursHeader" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/minutesBox"
         android:layout_width="60dp"
         android:layout_height="39dp"
-        android:layout_marginBottom="188dp"
+        android:layout_marginBottom="132dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="11dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.561"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/minutesHeader"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/secondsBox"
         android:layout_width="61dp"
         android:layout_height="39dp"
-        android:layout_marginBottom="188dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
+        android:layout_marginTop="14dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/secondsHeader" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/hoursHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="228dp"
+        android:layout_marginBottom="180dp"
         android:layout_marginLeft="44dp"
         android:layout_marginStart="44dp"
+        android:layout_marginTop="8dp"
         android:text="@string/hours"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yearText" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/minutesHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="228dp"
+        android:layout_marginBottom="180dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/minutes"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.559"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/monthText"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/secondsHeader"
         android:layout_width="wrap_content"
-        android:layout_height="15dp"
-        android:layout_marginBottom="228dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginRight="48dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="184dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="52dp"
+        android:layout_marginTop="8dp"
         android:text="@string/Seconds"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dayText" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/commentBox"
         android:layout_width="316dp"
-        android:layout_height="38dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="436dp" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="323dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="128dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="56dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:text="TextView"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="Name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="@string/commentHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/commentHeader"
+        app:layout_constraintVertical_bias="0.833" />
+
+    <TextView
+        android:id="@+id/commentHeader"
+        android:layout_width="323dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="92dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/commentHeader"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.822"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/minutesBox" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="316dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="2dp"
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/dateChangeHeader"
+        android:layout_width="288dp"
+        android:layout_height="26dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/newDate"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.453" />
 </android.support.constraint.ConstraintLayout>

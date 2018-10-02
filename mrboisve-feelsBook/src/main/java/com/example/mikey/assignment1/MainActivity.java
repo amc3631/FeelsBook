@@ -1,7 +1,9 @@
 package com.example.mikey.assignment1;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         angerDisplay = new emotionTotalDisplay((TextView)findViewById(R.id.angerTotal),"angerKey", this);
 
         // create emotion list controller and get emotion list
-        final emotionList eList = getEmotionList(this);
+        final emotionList eList = getEmotionList();
 
         // list of displays
         List<emotionTotalDisplay> displays = new ArrayList<>();
@@ -68,56 +70,121 @@ public class MainActivity extends AppCompatActivity {
         joyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!(comment.length()<=100)){
+                    AlertDialog.Builder tooLong = new AlertDialog.Builder(MainActivity.this);
+                    tooLong.setMessage("Please enter a comment that is no more than 100 characters long");
+                    tooLong.setPositiveButton("Okay", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    tooLong.show();
+                    return;
+                }
                 joyDisplay.incrementTotal();
                 emotion e = new emotion("Joy", comment.getText().toString());
                 eList.addEmotion(e);
             }
         });
-
         fearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!(comment.length()<=100)){
+                    AlertDialog.Builder tooLong = new AlertDialog.Builder(MainActivity.this);
+                    tooLong.setMessage("Please enter a comment that is no more than 100 characters long");
+                    tooLong.setPositiveButton("Okay", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    tooLong.show();
+                    return;
+                }
                 fearDisplay.incrementTotal();
                 emotion e = new emotion("Fear", comment.getText().toString());
                 eList.addEmotion(e);
             }
         });
-
         angerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!(comment.length()<=100)){
+                    AlertDialog.Builder tooLong = new AlertDialog.Builder(MainActivity.this);
+                    tooLong.setMessage("Please enter a comment that is no more than 100 characters long");
+                    tooLong.setPositiveButton("Okay", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    tooLong.show();
+                    return;
+                }
                 angerDisplay.incrementTotal();
                 emotion e = new emotion("Anger", comment.getText().toString());
                 eList.addEmotion(e);
-
             }
         });
-
         sadnessButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!(comment.length()<=100)){
+                    AlertDialog.Builder tooLong = new AlertDialog.Builder(MainActivity.this);
+                    tooLong.setMessage("Please enter a comment that is no more than 100 characters long");
+                    tooLong.setPositiveButton("Okay", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    tooLong.show();
+                    return;
+                }
                 sadnessDisplay.incrementTotal();
                 emotion e = new emotion("Sadness", comment.getText().toString());
                 eList.addEmotion(e);
             }
         });
-
         surpriseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!(comment.length()<=100)){
+                    AlertDialog.Builder tooLong = new AlertDialog.Builder(MainActivity.this);
+                    tooLong.setMessage("Please enter a comment that is no more than 100 characters long");
+                    tooLong.setPositiveButton("Okay", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    tooLong.show();
+                    return;
+                }
                 surpriseDisplay.incrementTotal();
                 emotion e = new emotion("Surprise", comment.getText().toString());
                 eList.addEmotion(e);
             }
         });
-
         loveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!(comment.length()<=100)){
+                    AlertDialog.Builder tooLong = new AlertDialog.Builder(MainActivity.this);
+                    tooLong.setMessage("Please enter a comment that is no more than 100 characters long");
+                    tooLong.setPositiveButton("Okay", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    tooLong.show();
+                    return;
+                }
                 loveDisplay.incrementTotal();
                 emotion e = new emotion("Love", comment.getText().toString());
                 eList.addEmotion(e);
-
             }
         });
 

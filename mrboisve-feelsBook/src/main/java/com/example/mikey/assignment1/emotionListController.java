@@ -7,9 +7,9 @@ public abstract class emotionListController {
     private static emotionList eList = null;
 
 
-    public static emotionList getEmotionList(Context activity) {
+    public static emotionList getEmotionList() {
         if (eList == null){
-            eList = new emotionList(activity);
+            eList = new emotionList();
         }
         return eList;
     }
