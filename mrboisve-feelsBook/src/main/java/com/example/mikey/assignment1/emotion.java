@@ -2,8 +2,8 @@ package com.example.mikey.assignment1;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.TimeZone;
 
 // each emotion has a type comment and date
@@ -15,8 +15,7 @@ public class emotion {
     private Date date;
     private String comment;
 
-    DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-    TimeZone tz = TimeZone.getTimeZone("Canada/Mountain");
+    private DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.CANADA);
 
 
     // constructor with no comment
@@ -28,7 +27,7 @@ public class emotion {
     emotion(String emotionType, String comment){
         this.emotionType = emotionType;
         this.comment = comment;
-        Calendar calendar = Calendar.getInstance();
+        TimeZone tz = TimeZone.getTimeZone("Canada/Mountain");
         format.setTimeZone(tz);
         this.date = new Date();
     }
