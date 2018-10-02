@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">mrboisve-feelsbook</string>
+    <string name="Fear_button">Fear</string>
+    <string name="Joy_button">Joy</string>
+    <string name="Love_button">Love</string>
+    <string name="Surpise_button">Surprise</string>
+    <string name="Anger_button">Anger</string>
+    <string name="Sadness_button">Sadness</string>
+    <string name="mainHeader">What are you feeling?</string>
+    <string name="historyButtonText">View/Edit History</string>
+    <string name="comment_prompt">Enter a comment (optional)</string>
+    <string name="commentHint">Enter a comment here (optional)</string>
+    <string name="title_activity_edit_comment">editCommentActivity</string>
+    <string name="textview">TextView</string>
+    <string name="joy">joy</string>
+    <string name="anger">anger</string>
+    <string name="love">love</string>
+    <string name="surpsrise">surpsrise</string>
+    <string name="fear">fear</string>
+    <string name="sadness">sadness</string>
+    <string name="newDate">Change date:</string>
+    <string name="newType">Change emotion category:</string>
+    <string name="year">YYYY</string>
+    <string name="month">MM</string>
+    <string name="day">DD</string>
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
+    <string name="Seconds">Seconds</string>
+    <string name="name">Name</string>
+    <string name="commentHeader">Change comment:</string>
+    <string name="save">Save all changes</string>
+</resources>
