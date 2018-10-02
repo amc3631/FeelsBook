@@ -25,7 +25,7 @@ public class emotionTotalDisplay {
         this.display = display;
         this.emotionKey = emotionKey;
         this.mainActivity = mainActivity;
-        emotionTotal = 0;
+        emotionTotal = myPrefs.getInt(emotionKey,0);
         myPrefs = mainActivity.getSharedPreferences("prefs", Context.MODE_PRIVATE);
     }
 

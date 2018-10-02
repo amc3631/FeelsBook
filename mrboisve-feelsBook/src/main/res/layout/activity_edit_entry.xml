@@ -204,7 +204,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/hoursBox"
         android:layout_width="62dp"
         android:layout_height="40dp"
         android:layout_marginBottom="188dp"
@@ -217,7 +217,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/minutesBox"
         android:layout_width="60dp"
         android:layout_height="39dp"
         android:layout_marginBottom="188dp"
@@ -234,7 +234,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/secondsBox"
         android:layout_width="61dp"
         android:layout_height="39dp"
         android:layout_marginBottom="188dp"
@@ -247,7 +247,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/hoursHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="228dp"
@@ -258,7 +258,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/minutesHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="228dp"
@@ -271,7 +271,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/secondsHeader"
         android:layout_width="wrap_content"
         android:layout_height="15dp"
         android:layout_marginBottom="228dp"
@@ -282,14 +282,20 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/commentBox"
         android:layout_width="316dp"
         android:layout_height="38dp"
+        android:layout_marginBottom="88dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="436dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView11"
@@ -306,4 +312,18 @@
         app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="@string/commentHeader" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="316dp"
+        android:layout_height="77dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="2dp"
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

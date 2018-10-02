@@ -1,19 +1,14 @@
 package com.example.mikey.assignment1;
 
-import android.content.Context;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import static com.example.mikey.assignment1.emotionListController.getEmotionList;
 
 // TODO: cite student picker and lonelytwitter
@@ -59,36 +54,70 @@ public class MainActivity extends AppCompatActivity {
         // create emotion list controller and get emotion list
         final emotionList eList = getEmotionList(this);
 
-        // list of displays
-        List<emotionTotalDisplay> displays = new ArrayList<>();
-        Collections.addAll(displays, joyDisplay, fearDisplay, sadnessDisplay, loveDisplay, surpriseDisplay, angerDisplay);
-
         // set listeners for each button
         // each button will increment total, create a new emotion, and add new emotion to emotion list
         joyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!(comment.length()<=100)){
+                    AlertDialog.Builder tooLong = new AlertDialog.Builder(MainActivity.this);
+                    tooLong.setMessage("Please enter a comment that is no more than 100 characters long");
+                    tooLong.setPositiveButton("Okay", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    return;
+                }
                 joyDisplay.incrementTotal();
                 emotion e = new emotion("Joy", comment.getText().toString());
                 eList.addEmotion(e);
+
+
             }
         });
 
         fearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!(comment.length()<=100)){
+                    AlertDialog.Builder tooLong = new AlertDialog.Builder(MainActivity.this);
+                    tooLong.setMessage("Please enter a comment that is no more than 100 characters long");
+                    tooLong.setPositiveButton("Okay", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    return;
+                }
                 fearDisplay.incrementTotal();
                 emotion e = new emotion("Fear", comment.getText().toString());
                 eList.addEmotion(e);
+
+
             }
         });
 
         angerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!(comment.length()<=100)){
+                    AlertDialog.Builder tooLong = new AlertDialog.Builder(MainActivity.this);
+                    tooLong.setMessage("Please enter a comment that is no more than 100 characters long");
+                    tooLong.setPositiveButton("Okay", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    return;
+                }
                 angerDisplay.incrementTotal();
                 emotion e = new emotion("Anger", comment.getText().toString());
                 eList.addEmotion(e);
+
 
             }
         });
@@ -96,27 +125,65 @@ public class MainActivity extends AppCompatActivity {
         sadnessButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!(comment.length()<=100)){
+                    AlertDialog.Builder tooLong = new AlertDialog.Builder(MainActivity.this);
+                    tooLong.setMessage("Please enter a comment that is no more than 100 characters long");
+                    tooLong.setPositiveButton("Okay", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    return;
+                }
                 sadnessDisplay.incrementTotal();
                 emotion e = new emotion("Sadness", comment.getText().toString());
                 eList.addEmotion(e);
+
+
             }
         });
 
         surpriseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!(comment.length()<=100)){
+                    AlertDialog.Builder tooLong = new AlertDialog.Builder(MainActivity.this);
+                    tooLong.setMessage("Please enter a comment that is no more than 100 characters long");
+                    tooLong.setPositiveButton("Okay", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    return;
+                }
                 surpriseDisplay.incrementTotal();
                 emotion e = new emotion("Surprise", comment.getText().toString());
                 eList.addEmotion(e);
+
+
             }
         });
 
         loveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!(comment.length()<=100)){
+                    AlertDialog.Builder tooLong = new AlertDialog.Builder(MainActivity.this);
+                    tooLong.setMessage("Please enter a comment that is no more than 100 characters long");
+                    tooLong.setPositiveButton("Okay", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    return;
+                }
                 loveDisplay.incrementTotal();
                 emotion e = new emotion("Love", comment.getText().toString());
                 eList.addEmotion(e);
+
 
             }
         });

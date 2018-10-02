@@ -9,12 +9,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import static android.app.PendingIntent.getActivity;
 import static com.example.mikey.assignment1.emotionListController.getEmotionList;
 
 // serialization will be used to pass an emotion object between activites and save emotion list to shared preferences
@@ -25,13 +23,21 @@ public class listEmotionsActivity extends AppCompatActivity implements Serializa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_emotions);
 
+        // create instances of emotionTotalDisplay for each emotion
+        final emotionTotalDisplay joyDisplay = new emotionTotalDisplay((TextView)findViewById(R.id.joyTotal),"joyKey", this);
+        final emotionTotalDisplay fearDisplay = new emotionTotalDisplay((TextView)findViewById(R.id.fearTotal),"fearKey", this);
+        final emotionTotalDisplay sadnessDisplay = new emotionTotalDisplay((TextView)findViewById(R.id.sadnessTotal),"sadnessKey", this);
+        final emotionTotalDisplay loveDisplay = new emotionTotalDisplay((TextView)findViewById(R.id.loveTotal),"loveKey", this);
+        final emotionTotalDisplay surpriseDisplay = new emotionTotalDisplay((TextView)findViewById(R.id.surpriseTotal),"surpriseKey", this);
+        final emotionTotalDisplay angerDisplay = new emotionTotalDisplay((TextView)findViewById(R.id.angerTotal),"angerKey", this);
+
         final emotionList eList = getEmotionList(this);
 
         // get listView id
         ListView listView = findViewById(R.id.emotionListView);
 
         // add adapter to listView
-        final ArrayAdapter<emotion> adapter = new ArrayAdapter<emotion>(listEmotionsActivity.this, android.R.layout.simple_list_item_1, eList.getEmotionList());
+        final ArrayAdapter<emotion> adapter = new ArrayAdapter<>(listEmotionsActivity.this, android.R.layout.simple_list_item_1, eList.getEmotionList());
         listView.setAdapter(adapter);
 
         // create a dialog box that will prompt user to delete or edit emotion entry when an entry is clicked
@@ -41,7 +47,7 @@ public class listEmotionsActivity extends AppCompatActivity implements Serializa
                 // get the emotion that was clicked
                 final emotion e = eList.getEmotionList().get(position);
 
-                AlertDialog.Builder adb = new AlertDialog.Builder(listEmotionsActivity.this);
+                final AlertDialog.Builder adb = new AlertDialog.Builder(listEmotionsActivity.this);
                 adb.setMessage("Would you like to edit or delete this emotion?");
                 adb.setCancelable(true);
 
@@ -49,6 +55,21 @@ public class listEmotionsActivity extends AppCompatActivity implements Serializa
                 adb.setPositiveButton("Delete", new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        String emotionType = e.getEmotionType();
+                        switch (emotionType){
+                            case "Joy": joyDisplay.decrementTotal();
+                                break;
+                            case "Anger": angerDisplay.decrementTotal();
+                                break;
+                            case "Sadness": sadnessDisplay.decrementTotal();
+                                break;
+                            case "Surprise": surpriseDisplay.decrementTotal();
+                                break;
+                            case "Love": loveDisplay.decrementTotal();
+                                break;
+                            case "Fear": fearDisplay.decrementTotal();
+                                break;
+                        }
                         eList.deleteEmotion(e);
                         adapter.notifyDataSetChanged();
                         dialog.dismiss();
@@ -77,6 +98,15 @@ public class listEmotionsActivity extends AppCompatActivity implements Serializa
 
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setContentView(R.layout.activity_list_emotions);
+        // get changed emotion set changes, sort list,
+        // serialization
+
     }
 
 

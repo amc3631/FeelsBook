@@ -3,14 +3,8 @@ package com.example.mikey.assignment1;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 // this class will contain every emotion tha the user adds
 // implements functions necessary to manage emotion list
@@ -19,12 +13,10 @@ public class emotionList implements manageEmotions {
 
     private ArrayList<emotion> emotionList;
     private SharedPreferences myPrefs;
-    private Context activity;
     private String key = "list key";
 
-    emotionList(Context acitvity){
+    emotionList(Context activity){
         //emotionList = myPrefs.getClass();
-        this.activity = acitvity;
         myPrefs = activity.getSharedPreferences("prefs", Context.MODE_PRIVATE);
         emotionList = new ArrayList<>();
     }
