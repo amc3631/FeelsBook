@@ -1,3 +1,39 @@
+/*
+Copyright 2018 Michael Boisvert
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+associated documentation files (the "Software"), to deal in the Software without restriction,
+including without limitation the rights to use, copy, modify, merge, publish, distribute,
+sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or
+substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+The test classes as well as the load emotion list and save emotion list methods in the emotion list
+manager class are taken from the student picker series by Abram Hindle.
+
+Code for creating button listeners taken from the CMPUT 301 lab LonelyTwitter android project.
+
+Examples from https://developer.android.com/training/basics/intents/result#java used in writing the
+code for moving data between activites.
+
+Code for opening an activity for a specific result based on code by Kanth (user:1592160)
+found at https://stackoverflow.com/questions/14785806/android-how-to-make-an-activity-return-results-to-the-activity-which-calls-it
+
+
+
+ */
+
+
+
+
 package com.example.mikey.assignment1;
 
 import android.content.DialogInterface;
