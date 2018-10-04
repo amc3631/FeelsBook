@@ -1,25 +1,16 @@
 package com.example.mikey.assignment1;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
-import java.lang.reflect.Type;
-import java.text.Format;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.List;
+import java.util.Locale;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-// this class will contain every emotion tha the user adds
+// this class will contain every emotion that the user adds
 // implements functions necessary to manage emotion list
-// list stored in shared preferences
-public class emotionList implements manageEmotions {
+public class emotionList implements Serializable {
 
     private ArrayList<emotion> emotionList;
 
@@ -27,32 +18,52 @@ public class emotionList implements manageEmotions {
         emotionList = new ArrayList<>();
     }
 
+    // add an emotion to list then sort
     public void addEmotion(emotion e){
         emotionList.add(e);
         sortList();
     }
 
-    public void editEmotion(emotion e, String emotionData) throws ParseException {
+    // change an emotion in the list by changing each individual element of emotion then sort list
+    public void editEmotion(emotion e, String emotionData) {
+        // obtain emotion type, date, and comment from single data string
         String[] splitData = emotionData.split("\\s");
         e.setEmotionType(splitData[0]);
-        Date date = new Date();
-        date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(splitData[1]);
-        e.setDate(date);
+        // parse date part of string into a Date object
+        try{
+            Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.CANADA).parse(splitData[1]);
+            e.setDate(date);
+        } catch (ParseException x){
+            // should never reach here as emotion string would already have been validated in editEntryActivity
+            System.out.println("invalid emotion string");
+        }
         // reconstruct comment in the event there was spaces in it
         int wordsInComment = splitData.length - 2;
-        String comment = "";
+        StringBuilder comment = new StringBuilder();
         if (wordsInComment>0) {
             for (int i=0;i<wordsInComment;i++){
-                comment = comment + " " + splitData[i+2];
+                comment.append(" ").append(splitData[i + 2]);
             }
         }
-        e.setComment(comment);
+        e.setComment(comment.toString());
         sortList();
     }
 
+    // delete emotion then sort
     public void deleteEmotion(emotion e){
         emotionList.remove(e);
         sortList();
+    }
+
+    // find the total amount of a specific type of emotion in the emotion list
+    public int countEmotion(String emotion){
+        int count = 0;
+        for (emotion e : this.emotionList){
+            if (e.getEmotionType().equals(emotion)){
+                count++;
+            }
+        }
+        return count;
     }
 
     // sort emotions by date using custom comparator class
@@ -62,7 +73,8 @@ public class emotionList implements manageEmotions {
         Collections.sort(emotionList, new emotionComparator());
     }
 
-    public ArrayList<emotion> getEmotionList(){
+    // get the actual ArrayList of emotions
+    public ArrayList<emotion> getEmotionArray(){
         return this.emotionList;
     }
 

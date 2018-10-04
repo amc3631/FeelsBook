@@ -3,7 +3,12 @@ package com.example.mikey.assignment1;
 import junit.framework.TestCase;
 
 import java.util.Date;
-
+/*
+ Code taken from student picker tutorial by Abram Hindle,
+ https://www.youtube.com/watch?v=k9ZNbsc0Qgo&list=PL240uJOh_Vb4PtMZ0f7N8ACYkCLv0673O&index=3,
+ Published Sep 11 2014
+ Viewed on Oct 2, 2018
+ */
 public class emotionTest extends TestCase {
     public void testEmotion(){
         String emotionType = "Joy";

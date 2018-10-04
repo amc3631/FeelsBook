@@ -29,4 +29,11 @@
     <string name="name">Name</string>
     <string name="commentHeader">Change comment:</string>
     <string name="save">Save all changes</string>
+    <string name="currentJoy">Current emotion: Joy</string>
+    <string name="currentFear">Current emotion: Fear</string>
+    <string name="currentAnger">Current emotion: Anger</string>
+    <string name="currentSadness">Current emotion: Sadness</string>
+    <string name="currentSurprise">Current emotion: Surprise</string>
+    <string name="currentLove">Current emotion: Love</string>
+    <string name="current">Current emotion:</string>
 </resources>

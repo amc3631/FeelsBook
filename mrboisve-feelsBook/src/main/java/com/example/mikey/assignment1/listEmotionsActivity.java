@@ -9,22 +9,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
-import static android.app.PendingIntent.getActivity;
-import static com.example.mikey.assignment1.emotionListController.getEmotionList;
-
-// serialization will be used to pass an emotion object between activites and save emotion list to shared preferences
+// continuously updates a ListView with the contents of an arrayList of emotions
+// offers user interface options to edit or delete emotions
 public class listEmotionsActivity extends AppCompatActivity implements Serializable {
 
     String newEmotionData;
-    emotionList eList = getEmotionList();
     emotion e;
+    emotionList eList;
+    ArrayAdapter<emotion> adapter;
+    emotionListManager manager;
+    int index;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,19 +30,24 @@ public class listEmotionsActivity extends AppCompatActivity implements Serializa
         // get listView id
         ListView listView = findViewById(R.id.emotionListView);
 
-        // add adapter to listView
-        final ArrayAdapter<emotion> adapter = emotionListManager.getAdapter(this);
-        listView.setAdapter(adapter);
+        // initialize emotionList manager for saving and loading
+        manager = new emotionListManager(this.getApplicationContext());
 
-        adapter.notifyDataSetChanged();
+        // get the emotion list
+        eList = manager.loadEmotionList();
+
+        // add adapter to listView
+        adapter = new ArrayAdapter<>(this.getApplicationContext(), android.R.layout.simple_list_item_1, eList.getEmotionArray());
+        listView.setAdapter(adapter);
 
         // create a dialog box that will prompt user to delete or edit emotion entry when an entry is clicked
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 // get the emotion that was clicked
-                e = eList.getEmotionList().get(position);
+                e = eList.getEmotionArray().get(position);
 
+                // ask user for input
                 AlertDialog.Builder adb = new AlertDialog.Builder(listEmotionsActivity.this);
                 adb.setMessage("Would you like to edit or delete this emotion?");
                 adb.setCancelable(true);
@@ -57,6 +58,7 @@ public class listEmotionsActivity extends AppCompatActivity implements Serializa
                     public void onClick(DialogInterface dialog, int which) {
                         eList.deleteEmotion(e);
                         adapter.notifyDataSetChanged();
+                        manager.saveEmotionList(eList);
                         dialog.dismiss();
                     }
                 });
@@ -91,14 +93,20 @@ public class listEmotionsActivity extends AppCompatActivity implements Serializa
         });
     }
 
+    // whenever this activity resumes update the ListView
     @Override
     public void onResume(){
         super.onResume();
-        emotionListManager.getAdapter(this).notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
     }
 
-    // from: https://developer.android.com/training/basics/intents/result#java
     // override onActivityResult function to control what happens when a result is returned from editEntryActivty
+    /*
+    Based on example code in android developers documentation,
+    https://developer.android.com/training/basics/intents/result#java,
+    Last updated Sep 20 2018,
+    Viewed on Oct 2 2018
+    */
     @Override
     public void onActivityResult (int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -110,11 +118,10 @@ public class listEmotionsActivity extends AppCompatActivity implements Serializa
                 // User saved changes to emotion
                 // Store new emotion string
                 newEmotionData = data.getStringExtra("editedEmotion");
-                try {
-                    eList.editEmotion(e, newEmotionData);
-                } catch (ParseException x) {
-                    // should never reach here as the date was already validated in editEntryActivity
-                };
+                eList.editEmotion(e, newEmotionData);
+                manager.saveEmotionList(eList);
+                index = eList.getEmotionArray().indexOf(e);
+
             }
         }
     }

@@ -2,9 +2,7 @@ package com.example.mikey.assignment1;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +13,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
+/*
+ in this activity user will be able to change date, time, emotion type, and comment for a
+ particular emotion
+ */
 public class editEntryActivity extends listEmotionsActivity {
 
     @Override
@@ -29,11 +31,11 @@ public class editEntryActivity extends listEmotionsActivity {
         String emotionType = splitEntry[0];
         String date = splitEntry[1];
         int wordsInComment = splitEntry.length - 2;
-        String comment = "";
+        StringBuilder comment = new StringBuilder();
         // reconstruct comment in the event there was spaces in it
         if (wordsInComment>0) {
             for (int i=0;i<wordsInComment;i++){
-                comment = comment + " " + splitEntry[i+2];
+                comment.append(" ").append(splitEntry[i + 2]);
             }
         }
 
@@ -48,7 +50,8 @@ public class editEntryActivity extends listEmotionsActivity {
 
         // populate fields with current data
         final TextView currentEmotion = findViewById(R.id.currentEmotion);
-        currentEmotion.setText("Current emotion: " + emotionType);
+        String currentEmotionType = getString(R.string.current) + " " + emotionType;
+        currentEmotion.setText(currentEmotionType);
         final TextView yearText = findViewById(R.id.yearText);
         yearText.setText(year);
         final TextView monthText = findViewById(R.id.monthText);
@@ -62,7 +65,7 @@ public class editEntryActivity extends listEmotionsActivity {
         final TextView seconds = findViewById(R.id.secondsBox);
         seconds.setText(second);
         final TextView commentBox = findViewById(R.id.commentBox);
-        commentBox.setText(comment);
+        commentBox.setText(comment.toString());
 
         // get button IDs
         Button joyButton = findViewById(R.id.joyButton);
@@ -78,37 +81,37 @@ public class editEntryActivity extends listEmotionsActivity {
         joyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentEmotion.setText("Current emotion: Joy");
+                currentEmotion.setText(R.string.currentJoy);
             }
         });
         fearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentEmotion.setText("Current emotion: Fear");
+                currentEmotion.setText(R.string.currentFear);
             }
         });
         angerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentEmotion.setText("Current emotion: Anger");
+                currentEmotion.setText(R.string.currentAnger);
             }
         });
         sadnessButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentEmotion.setText("Current emotion: Sadness");
+                currentEmotion.setText(R.string.currentSadness);
             }
         });
         surpriseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentEmotion.setText("Current emotion: Surprise");
+                currentEmotion.setText(R.string.currentSurprise);
             }
         });
         loveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentEmotion.setText("Current emotion: Love");
+                currentEmotion.setText(R.string.currentLove);
             }
         });
 
@@ -119,6 +122,7 @@ public class editEntryActivity extends listEmotionsActivity {
                 // compose new strings for date, comment, and category
                 // check that they are valid
                 // if invalid open dialog box that requests a valid entry
+                // compose final string of emotion data and send it to previous activity
 
                 // parts of date string
                 String year = yearText.getText().toString();
@@ -134,7 +138,9 @@ public class editEntryActivity extends listEmotionsActivity {
                 try {
                     format.parse(date);
                 } catch (ParseException e){
-                    // date and time invalid
+                    // date and/or time invalid
+                    // prompt user to enter valid input
+                    // stay in this activity without making changes to emotion
                     AlertDialog.Builder invalid = new AlertDialog.Builder(editEntryActivity.this);
                     invalid.setMessage("Please enter a valid date and time");
                     invalid.setPositiveButton("Okay", new DialogInterface.OnClickListener(){
@@ -147,6 +153,7 @@ public class editEntryActivity extends listEmotionsActivity {
                 }
 
                 String comment = commentBox.getText().toString();
+                // validate that comment is not too long
                 if(!(comment.length()<=100)){
                     AlertDialog.Builder tooLong = new AlertDialog.Builder(editEntryActivity.this);
                     tooLong.setMessage("Please enter a comment that is no more than 100 characters long");
@@ -161,10 +168,17 @@ public class editEntryActivity extends listEmotionsActivity {
                 String emotionString = currentEmotion.getText().toString();
                 String[] emotionSplit = emotionString.split(" ");
                 String emotionType = emotionSplit[2];
+
+                // compose final emotion data string
                 String finalEmotion = emotionType + " " + date + "\n" + comment;
 
                 // finish activity and return resulting emotion string
-                // from: https://stackoverflow.com/questions/14785806/android-how-to-make-an-activity-return-results-to-the-activity-which-calls-it
+                /*
+                putExtra code written by Kanth (user:1592160),
+                https://stackoverflow.com/questions/14785806/android-how-to-make-an-activity-return-results-to-the-activity-which-calls-it,
+                Feb 9 2013,
+                Viewed October 10 2018
+                 */
                 Intent intent = getIntent();
                 intent.putExtra("editedEmotion", finalEmotion);
                 setResult(RESULT_OK, intent);

@@ -1,42 +1,36 @@
 package com.example.mikey.assignment1;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import static com.example.mikey.assignment1.emotionListController.getEmotionList;
-
-// TODO: cite student picker and lonelytwitter
-// serializable from here
-// https://stackoverflow.com/questions/12092612/pass-list-of-objects-from-one-activity-to-other-activity-in-android
 
 
 public class MainActivity extends AppCompatActivity {
 
-    protected emotionTotalDisplay joyDisplay;
-    protected emotionTotalDisplay fearDisplay;
-    protected emotionTotalDisplay angerDisplay;
-    protected emotionTotalDisplay sadnessDisplay;
-    protected emotionTotalDisplay surpriseDisplay;
-    protected emotionTotalDisplay loveDisplay;
+    TextView joyTotal;
+    TextView fearTotal;
+    TextView sadnessTotal;
+    TextView angerTotal;
+    TextView surpriseTotal;
+    TextView loveTotal;
+
+    emotionListManager manager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen);
+
+        // initialize emotionList manager for saving and loading
+        manager = new emotionListManager(getApplicationContext().getApplicationContext());
+
+        final emotionList eList = manager.loadEmotionList();
 
         // get button IDs
         Button joyButton = findViewById(R.id.joyButton);
@@ -47,26 +41,27 @@ public class MainActivity extends AppCompatActivity {
         Button angerButton = findViewById(R.id.angerButton);
         Button historyButton = findViewById(R.id.historyButton);
 
+        // get emotion total display ids
+        joyTotal = findViewById(R.id.joyTotal);
+        fearTotal = findViewById(R.id.fearTotal);
+        sadnessTotal = findViewById(R.id.sadnessTotal);
+        angerTotal = findViewById(R.id.angerTotal);
+        surpriseTotal = findViewById(R.id.surpriseTotal);
+        loveTotal = findViewById(R.id.loveTotal);
+
+
         // comment box id
         final TextView comment = findViewById(R.id.commentBox);
 
-        // create instances of emotionTotalDisplay for each emotion
-        joyDisplay = new emotionTotalDisplay((TextView)findViewById(R.id.joyTotal),"joyKey", this);
-        fearDisplay = new emotionTotalDisplay((TextView)findViewById(R.id.fearTotal),"fearKey", this);
-        sadnessDisplay = new emotionTotalDisplay((TextView)findViewById(R.id.sadnessTotal),"sadnessKey", this);
-        loveDisplay = new emotionTotalDisplay((TextView)findViewById(R.id.loveTotal),"loveKey", this);
-        surpriseDisplay = new emotionTotalDisplay((TextView)findViewById(R.id.surpriseTotal),"surpriseKey", this);
-        angerDisplay = new emotionTotalDisplay((TextView)findViewById(R.id.angerTotal),"angerKey", this);
-
-        // create emotion list controller and get emotion list
-        final emotionList eList = getEmotionList();
-
-        // list of displays
-        List<emotionTotalDisplay> displays = new ArrayList<>();
-        Collections.addAll(displays, joyDisplay, fearDisplay, sadnessDisplay, loveDisplay, surpriseDisplay, angerDisplay);
-
         // set listeners for each button
-        // each button will increment total, create a new emotion, and add new emotion to emotion list
+        // each button will add a new emotion to emotion list and initiate a count of the total of that emotion entered
+        // each button checks that the length of the comment is no more than 100 characters before adding the emotion
+        /*
+        Code for creating onClickListeners written by Rosevear,
+        https://github.com/Rosevear/lonelyTwitter,
+        Last update Sept 23 2018,
+        Viewed on Oct 5 2018
+         */
         joyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,9 +77,10 @@ public class MainActivity extends AppCompatActivity {
                     tooLong.show();
                     return;
                 }
-                joyDisplay.incrementTotal();
                 emotion e = new emotion("Joy", comment.getText().toString());
                 eList.addEmotion(e);
+                joyTotal.setText("Total: " + eList.countEmotion("Joy"));
+                manager.saveEmotionList(eList);
             }
         });
         fearButton.setOnClickListener(new View.OnClickListener() {
@@ -102,9 +98,10 @@ public class MainActivity extends AppCompatActivity {
                     tooLong.show();
                     return;
                 }
-                fearDisplay.incrementTotal();
                 emotion e = new emotion("Fear", comment.getText().toString());
                 eList.addEmotion(e);
+                fearTotal.setText("Total: " + eList.countEmotion("Fear"));
+                manager.saveEmotionList(eList);
             }
         });
         angerButton.setOnClickListener(new View.OnClickListener() {
@@ -122,9 +119,10 @@ public class MainActivity extends AppCompatActivity {
                     tooLong.show();
                     return;
                 }
-                angerDisplay.incrementTotal();
                 emotion e = new emotion("Anger", comment.getText().toString());
                 eList.addEmotion(e);
+                angerTotal.setText("Total: " + eList.countEmotion("Anger"));
+                manager.saveEmotionList(eList);
             }
         });
         sadnessButton.setOnClickListener(new View.OnClickListener() {
@@ -142,9 +140,10 @@ public class MainActivity extends AppCompatActivity {
                     tooLong.show();
                     return;
                 }
-                sadnessDisplay.incrementTotal();
                 emotion e = new emotion("Sadness", comment.getText().toString());
                 eList.addEmotion(e);
+                sadnessTotal.setText("Total: " + eList.countEmotion("Sadness"));
+                manager.saveEmotionList(eList);
             }
         });
         surpriseButton.setOnClickListener(new View.OnClickListener() {
@@ -162,9 +161,10 @@ public class MainActivity extends AppCompatActivity {
                     tooLong.show();
                     return;
                 }
-                surpriseDisplay.incrementTotal();
                 emotion e = new emotion("Surprise", comment.getText().toString());
                 eList.addEmotion(e);
+                surpriseTotal.setText("Total: " + eList.countEmotion("Surprise"));
+                manager.saveEmotionList(eList);
             }
         });
         loveButton.setOnClickListener(new View.OnClickListener() {
@@ -182,9 +182,10 @@ public class MainActivity extends AppCompatActivity {
                     tooLong.show();
                     return;
                 }
-                loveDisplay.incrementTotal();
                 emotion e = new emotion("Love", comment.getText().toString());
                 eList.addEmotion(e);
+                loveTotal.setText("Total: " + eList.countEmotion("Love"));
+                manager.saveEmotionList(eList);
             }
         });
 
@@ -205,13 +206,14 @@ public class MainActivity extends AppCompatActivity {
         updateEveryDisplay();
     }
 
-    protected void updateEveryDisplay(){
-        joyDisplay.updateDisplay();
-        sadnessDisplay.updateDisplay();
-        fearDisplay.updateDisplay();
-        angerDisplay.updateDisplay();
-        surpriseDisplay.updateDisplay();
-        loveDisplay.updateDisplay();
+    public void updateEveryDisplay(){
+        emotionList eList = manager.loadEmotionList();
+        loveTotal.setText("Total: " + eList.countEmotion("Love"));
+        surpriseTotal.setText("Total: " + eList.countEmotion("Surprise"));
+        sadnessTotal.setText("Total: " + eList.countEmotion("Sadness"));
+        angerTotal.setText("Total: " + eList.countEmotion("Anger"));
+        joyTotal.setText("Total: " + eList.countEmotion("Joy"));
+        fearTotal.setText("Total: " + eList.countEmotion("Fear"));
     }
 
 }

@@ -1,7 +1,9 @@
 package com.example.mikey.assignment1;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -9,13 +11,13 @@ import java.util.TimeZone;
 // each emotion has a type comment and date
 // initializing with comment is optional
 // all elements are editable
-public class emotion {
+public class emotion implements Serializable{
 
     private String emotionType;
     private Date date;
     private String comment;
-
-    private DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.CANADA);
+    DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.CANADA);
+    TimeZone tz = TimeZone.getDefault();
 
 
     // constructor with no comment
@@ -27,7 +29,7 @@ public class emotion {
     emotion(String emotionType, String comment){
         this.emotionType = emotionType;
         this.comment = comment;
-        TimeZone tz = TimeZone.getTimeZone("Canada/Mountain");
+        Calendar calendar = Calendar.getInstance();
         format.setTimeZone(tz);
         this.date = new Date();
     }
@@ -60,6 +62,7 @@ public class emotion {
     }
 
     @Override
+    // turn emotion elements into a single string
     public String toString(){
         return emotionType + " " + format.format(date) + "\n" + comment;
     }
