@@ -15,12 +15,10 @@ import java.io.Serializable;
 // offers user interface options to edit or delete emotions
 public class listEmotionsActivity extends AppCompatActivity implements Serializable {
 
-    String newEmotionData;
-    emotion e;
     emotionList eList;
     ArrayAdapter<emotion> adapter;
     emotionListManager manager;
-    int index;
+    emotion selectedEmotion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +38,14 @@ public class listEmotionsActivity extends AppCompatActivity implements Serializa
         adapter = new ArrayAdapter<>(this.getApplicationContext(), android.R.layout.simple_list_item_1, eList.getEmotionArray());
         listView.setAdapter(adapter);
 
+
+
         // create a dialog box that will prompt user to delete or edit emotion entry when an entry is clicked
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 // get the emotion that was clicked
-                e = eList.getEmotionArray().get(position);
+                selectedEmotion = eList.getEmotionArray().get(position);
 
                 // ask user for input
                 AlertDialog.Builder adb = new AlertDialog.Builder(listEmotionsActivity.this);
@@ -56,7 +56,7 @@ public class listEmotionsActivity extends AppCompatActivity implements Serializa
                 adb.setPositiveButton("Delete", new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        eList.deleteEmotion(e);
+                        eList.deleteEmotion(selectedEmotion);
                         adapter.notifyDataSetChanged();
                         manager.saveEmotionList(eList);
                         dialog.dismiss();
@@ -69,7 +69,7 @@ public class listEmotionsActivity extends AppCompatActivity implements Serializa
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(listEmotionsActivity.this, editEntryActivity.class);
-                        String entry = e.toString();
+                        String entry = selectedEmotion.toString();
                         intent.putExtra("currentEmotion", entry);
                         // onActivityResult will be called after editEntryActivity is complete
                         startActivityForResult(intent, 1);
@@ -117,10 +117,9 @@ public class listEmotionsActivity extends AppCompatActivity implements Serializa
             if (resultCode == RESULT_OK) {
                 // User saved changes to emotion
                 // Store new emotion string
-                newEmotionData = data.getStringExtra("editedEmotion");
-                eList.editEmotion(e, newEmotionData);
+                String newEmotionData = data.getStringExtra("editedEmotion");
+                eList.editEmotion(selectedEmotion, newEmotionData);
                 manager.saveEmotionList(eList);
-                index = eList.getEmotionArray().indexOf(e);
 
             }
         }

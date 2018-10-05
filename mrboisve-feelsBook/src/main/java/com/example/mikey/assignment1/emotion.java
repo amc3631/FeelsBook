@@ -16,17 +16,17 @@ public class emotion implements Serializable{
     private String emotionType;
     private Date date;
     private String comment;
-    DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.CANADA);
-    TimeZone tz = TimeZone.getDefault();
 
 
     // constructor with no comment
-    emotion(String emotionType){
+    public emotion(String emotionType){
         this(emotionType, "");
     }
 
     // constructor with comment
-    emotion(String emotionType, String comment){
+    public emotion(String emotionType, String comment){
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.CANADA);
+        TimeZone tz = TimeZone.getDefault();
         this.emotionType = emotionType;
         this.comment = comment;
         Calendar calendar = Calendar.getInstance();
@@ -64,6 +64,8 @@ public class emotion implements Serializable{
     @Override
     // turn emotion elements into a single string
     public String toString(){
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.CANADA);
+        TimeZone tz = TimeZone.getDefault();
         return emotionType + " " + format.format(date) + "\n" + comment;
     }
 }

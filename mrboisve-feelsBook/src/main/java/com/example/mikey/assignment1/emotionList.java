@@ -56,10 +56,10 @@ public class emotionList implements Serializable {
     }
 
     // find the total amount of a specific type of emotion in the emotion list
-    public int countEmotion(String emotion){
+    public int countEmotion(String emotionType){
         int count = 0;
         for (emotion e : this.emotionList){
-            if (e.getEmotionType().equals(emotion)){
+            if (e.getEmotionType().equals(emotionType)){
                 count++;
             }
         }

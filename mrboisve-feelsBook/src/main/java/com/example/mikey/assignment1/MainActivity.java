@@ -27,8 +27,8 @@ code for moving data between activites.
 Code for opening an activity for a specific result based on code by Kanth (user:1592160)
 found at https://stackoverflow.com/questions/14785806/android-how-to-make-an-activity-return-results-to-the-activity-which-calls-it
 
-
-
+Code for using a comparator class to sort objects taken from Jignesh Ansodariya (user:795554),
+at https://stackoverflow.com/users/795554/jignesh-ansodariya,
  */
 
 
